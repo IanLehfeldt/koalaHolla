@@ -23,4 +23,26 @@ router.get('/', function (req, res) {
     });
 });
 
+router.post('/', function (req, res) {
+    console.log('post route was hit');
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error connecting to database:', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query('INSERT INTO koalas (name, gender, age, transfer_status, notes)VALUES ($1, $2, $3, $4, $5);',
+                [req.body.name, req.body.gender, req.body.age, req.body.readyForTransfer, req.body.notes],
+                function (errorMakingQuery, results) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('error making query:', errorMakingQuery)
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
+            }
+     });
+});
+
 module.exports = router;

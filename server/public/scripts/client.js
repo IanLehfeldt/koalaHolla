@@ -11,12 +11,18 @@ $( document ).ready( function(){
     // get user input and put in an object
     // NOT WORKING YET :(
     // using a test object
+    var koalaName = $('#nameIn').val();
+    var koalaAge = $('#ageIn').val();
+    var koalaGender = $('#genderIn').val();
+    var koalaReady = $('#readyForTransferIn').val();
+    var koalaNotes = $('#notesIn').val();
+
     var objectToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      name: koalaName,
+      age: koalaAge,
+      gender: koalaGender,
+      readyForTransfer: koalaReady,
+      notes: koalaNotes,
     };
     // call saveKoala with the new obejct
     saveKoala( objectToSend );
@@ -46,6 +52,7 @@ function saveKoala( newKoala ){
     data: newKoala,
     success: function( data ){
       console.log( 'got some koalas: ', data );
+      getKoalas();
     } // end success
   }); //end ajax
 }
@@ -55,13 +62,13 @@ $('#viewKoalas').empty();
   for(var i = 0; i < koalaArray.length; i ++){
     var koalas = koalaArray[i];
     
-    var $koalaName = $('<td>'+koalas.name+'</td>');
-    var $koalaAge = $('<td>'+koalas.age+'</td>');
-    var $koalaGender = $('<td>'+koalas.gender+'</td>');
-    var $koalaReady = $('<td>'+koalas.transfer_status+'</td>');
-    var $koalaNotes = $('<td>'+koalas.notes+'</td>');
+    var koalaName = $('<td>'+koalas.name+'</td>');
+    var koalaAge = $('<td>'+koalas.age+'</td>');
+    var koalaGender = $('<td>'+koalas.gender+'</td>');
+    var koalaReady = $('<td>'+koalas.transfer_status+'</td>');
+    var koalaNotes = $('<td>'+koalas.notes+'</td>');
 
-    $('#viewKoalas').append('<tr>', $koalaName, $koalaAge, $koalaGender, $koalaReady, $koalaNotes, '</tr>');
+    $('#viewKoalas').append('<tr>', koalaName, koalaAge, koalaGender, koalaReady, koalaNotes, '</tr>');
   }
 
   // $koalaName = $('<td>Susan</td>');
