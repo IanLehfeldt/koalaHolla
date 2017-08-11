@@ -31,6 +31,7 @@ function getKoalas(){
     type: 'GET',
     success: function( data ){
       console.log( 'got some koalas: ', data );
+      drawKoalas(data);
     } // end success
   }); //end ajax
   // display on DOM with buttons that allow edit of each
@@ -48,3 +49,22 @@ function saveKoala( newKoala ){
     } // end success
   }); //end ajax
 }
+
+function drawKoalas(koalaArray){
+$('#viewKoalas').empty();
+  for(var i = 0; i < koalaArray.length; i ++){
+    var koalas = koalaArray[i];
+    
+    var $koalaName = $('<td>'+koalas.name+'</td>');
+    var $koalaAge = $('<td>'+koalas.age+'</td>');
+    var $koalaGender = $('<td>'+koalas.gender+'</td>');
+    var $koalaReady = $('<td>'+koalas.transfer_status+'</td>');
+    var $koalaNotes = $('<td>'+koalas.notes+'</td>');
+
+    $('#viewKoalas').append('<tr>', $koalaName, $koalaAge, $koalaGender, $koalaReady, $koalaNotes, '</tr>');
+  }
+
+  // $koalaName = $('<td>Susan</td>');
+  // $('#viewKoalas').append($koalaName);
+
+};
