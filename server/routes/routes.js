@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
                     res.sendStatus(500);
                 } else {
                     res.send(result.rows);
-                    console.log(result.rows);
+                    //console.log(result.rows);
                 }
             });
         }
@@ -43,6 +43,29 @@ router.post('/', function (req, res) {
                 });
             }
      });
+});
+
+router.put('/:id', function(req, res){
+    console.log(req.params.id);
+    
+    console.log('put route was hit');
+    pool.connect(function (errorConnectingToDatabase, client, done){
+        if (errorConnectingToDatabase){
+            console.log('error connecting to database:', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query("UPDATE koalas SET transfer_status = 'Y' WHERE user_id = $1;", 
+            [req.params.id],
+            function(errorMakingQuery, result){
+                if(errorMakingQuery){
+                    console.log('Error making query:', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
 });
 
 module.exports = router;

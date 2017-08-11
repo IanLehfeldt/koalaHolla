@@ -23,9 +23,9 @@ They have also provided their logo and the source code from when Lou (a KH emplo
 
 Hard Mode
 ---
-1. Ability for mark Koala ready for transfer. Add a button to each row that reads 'Ready for Transfer'. When the user clicks on the button, it should update the database for the specific Koala. The 'Ready for Transfer' button should only appear for Koalas that haven't yet been marked ready for transfer.
+[x]1. Ability for mark Koala ready for transfer. Add a button to each row that reads 'Ready for Transfer'. When the user clicks on the button, it should update the database for the specific Koala. The 'Ready for Transfer' button should only appear for Koalas that haven't yet been marked ready for transfer.
 
-2. Ability to delete Koalas from the database.
+[x]2. Ability to delete Koalas from the database.
 
 3. Add some styling.
 
